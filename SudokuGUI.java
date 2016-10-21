@@ -1,7 +1,9 @@
 package sudoku;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 class GameFrame{
 	static void displayFrame(){
 		//Setting up the Frame
@@ -20,19 +22,24 @@ class GameFrame{
 		mainFrame.setVisible(true);
 	}
 }
+
 class GamePanel{
 	static JPanel createGamePanel(){
 		//Setting up game panel
 		//The 9x9 grid is contained here
+		JTextField temp;
 		JPanel gamePanel = new JPanel(new GridLayout(9,9));
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
-				gamePanel.add(new JTextField());
+				temp = new JTextField();
+				temp.addKeyListener(new TextEntryListener());
+				gamePanel.add(temp);
 			}
 		}
 		return gamePanel;
-	} 
+	}
 }
+
 class OptionsPanel{
 	static JPanel createOptionsPanel(){
 		//Setting up the options panel
@@ -42,16 +49,22 @@ class OptionsPanel{
 		JButton newGame = new JButton("New Game");
 		newGame.setSize(100,50);
 		newGame.setVisible(true);
+		newGame.setActionCommand("new");
+		newGame.addActionListener(new ButtonClickListener());
 		optionsPanel.add(newGame);
 		//Setting up the "Quit Game" button
 		JButton quit = new JButton("Quit Game");
 		quit.setSize(100,50);
 		quit.setVisible(true);
+		quit.setActionCommand("quit");
+		quit.addActionListener(new ButtonClickListener());
 		optionsPanel.add(quit);
 		//Setting up the "Help" button
 		JButton help = new JButton("Help");
 		help.setSize(100,50);
 		help.setVisible(true);
+		help.setActionCommand("help");
+		help.addActionListener(new ButtonClickListener());
 		optionsPanel.add(help);
 		return optionsPanel;
 	}
