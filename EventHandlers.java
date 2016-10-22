@@ -13,7 +13,11 @@ class ButtonClickListener implements ActionListener{
 			MyJDialog helpDialog = new MyJDialog();
 		}
 		else if(e.getActionCommand() == "new"){
-			//Insert code for starting a new game
+			Sudoku.clearBoard();
+			Sudoku.startNewGame();
+		}
+		else if(e.getActionCommand() == "credits"){
+			CreditDialog creditDialog = new CreditDialog();
 		}
 	}
 }
