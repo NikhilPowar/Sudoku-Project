@@ -23,6 +23,20 @@ class GameFrame{
 	}
 }
 
+class MyJText extends JText{
+	private int posX, posY;
+	public void setPos(int x, int y){
+		posX=x;
+		posY=y;
+	}
+	public int getX(){
+		return posX;
+	}
+	public int getY(){
+		return posY;
+	}
+}
+
 class GamePanel{
 	static JPanel createGamePanel(){
 		//Setting up game panel
@@ -32,6 +46,8 @@ class GamePanel{
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
 				temp = new JTextField();
+				temp.setPos(j,i);
+				temp.setColumns(3);
 				temp.addKeyListener(new TextEntryListener());
 				gamePanel.add(temp);
 			}
@@ -43,7 +59,7 @@ class GamePanel{
 class OptionsPanel{
 	static JPanel createOptionsPanel(){
 		//Setting up the options panel
-		//Buttons reset, quit, help contained here
+		//Buttons newGame, quit, help contained here
 		JPanel optionsPanel = new JPanel(new FlowLayout());
 		//Setting up the "New Game" button
 		JButton newGame = new JButton("New Game");
@@ -69,3 +85,16 @@ class OptionsPanel{
 		return optionsPanel;
 	}
 }
+
+/*class HelpDialog extends JDialog{
+	public HelpDialog(JFrame parent){
+		super(parent, "Help", true);
+		if (parent != null) {
+		  Dimension parentSize = parent.getSize(); 
+		  Point p = parent.getLocation(); 
+		  setLocation(p.x + parentSize.width / 4, p.y + parentSize.height / 4);
+		}
+		JPanel helPanel = new JPanel();
+		JLabel rules = new JLabel("")
+	}
+}*/
