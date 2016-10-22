@@ -10,6 +10,11 @@ import java.util.ArrayList;
 /*to set and return textfield positions.*/
 class MyJTextField extends JTextField{
 	private int posX, posY;
+	public MyJTextField(){
+		Font font = this.getFont(); 
+		this.setFont(font.deriveFont(Font.BOLD));
+		setHorizontalAlignment(JTextField.CENTER);
+	}
 	public void setPos(int x, int y){
 		posX=x;
 		posY=y;
