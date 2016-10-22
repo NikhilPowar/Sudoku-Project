@@ -4,6 +4,59 @@ import java.util.*;
 import java.awt.event.*;
 import java.awt.*;
 
+class SudokuPuzzle{
+	public static int[][] getPuzzle(){
+		int[][] puzzle = new int[9][9];
+		Random r = new Random();
+		int i, j, count=0;
+		while(count<20){
+			i=r.nextInt(9);
+			j=r.nextInt(9);
+			if(puzzle[i][j]==0){
+				puzzle[i][j]=r.nextInt(9)+1;
+				if(checkColumn(puzzle,j)&&checkRow(puzzle,i)&&checkGroup(puzzle,(int)j/3,(int)i/3)){
+					count++;
+					continue;
+				}
+				puzzle[i][j]=0;
+			}
+		}
+		return puzzle;
+	}
+	private static boolean checkColumn(int[][] puzzle,int x){
+		Set<Integer> coveredElements = new HashSet<Integer>();
+		for(int i = 0; i<9; i++){
+			if(puzzle[i][x] != 0){
+				if(!coveredElements.add(puzzle[i][x]))
+					return false;
+			}
+		}
+		return true;
+	}
+	private static boolean checkRow(int[][] puzzle,int y){
+		Set<Integer> coveredElements = new HashSet<Integer>();
+		for(int i = 0; i < 9; i++){
+			if(puzzle[y][i] != 0){
+				if(!coveredElements.add(puzzle[y][i]))
+					return false;
+			}
+		}
+		return true;
+	}
+	private static boolean checkGroup(int[][] puzzle,int x, int y){
+		Set<Integer> coveredElements = new HashSet<Integer>();
+		for(int i = 3*x; i < (3*x+3); i++){
+			for(int j = 3*y; j < (3*y+3); j++){
+				if(puzzle[j][i] != 0){
+					if(!coveredElements.add(puzzle[j][i]))
+						return false;
+				}
+			}
+		}
+		return true;
+	}
+}
+
 public class Sudoku{
 	final static int GRID_LENGTH = 9;
 	static int board[][] = new int[GRID_LENGTH][GRID_LENGTH];
@@ -11,6 +64,17 @@ public class Sudoku{
 	/*main funciton. Driver for the whole program.*/
 	public static void main(String[] args){
 		GameFrame.displayFrame();
+		//Prepare the text fields
+		for(int i=0; i<9; i++){
+			for(int j=0; j<9; j++){
+				if(board[i][j]!=0){
+					//set text field at (i, j) as board[i][j]
+					getTextField(i, j).setText(board[i][j]);
+					//Locking the text field
+					getTextField(i, j).setEnabled(false);
+				}
+			}
+		}
 	}
 	
 	/*Method to update game board after a move.*/
