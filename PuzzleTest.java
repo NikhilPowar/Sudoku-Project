@@ -11,7 +11,7 @@ class SudokuPuzzle{
 			j=r.nextInt(9);
 			if(puzzle[i][j]==0){
 				puzzle[i][j]=r.nextInt(9)+1;
-				if(checkColumn(puzzle,j)&&checkRow(puzzle,i)&&checkGroup(puzzle,(int)i/3,(int)j/3)){
+				if(checkColumn(puzzle,j)&&checkRow(puzzle,i)&&checkGroup(puzzle,(int)j/3,(int)i/3)){
 					count++;
 					continue;
 				}
@@ -45,7 +45,7 @@ class SudokuPuzzle{
 		for(int i = 3*x; i < (3*x+3); i++){
 			for(int j = 3*y; j < (3*y+3); j++){
 				if(puzzle[j][i] != 0){
-					if(!coveredElements.add(puzzle[j][y]))
+					if(!coveredElements.add(puzzle[j][i]))
 						return false;
 				}
 			}
