@@ -25,6 +25,9 @@ public class Sudoku{
 					
 					//Locking the text field
 					GamePanel.getTextField(j, i).setEnabled(false);
+					
+					//Changing font color of locked cells
+					GamePanel.getTextField(j, i).setDisabledTextColor(Color.BLACK);
 				}
 			}
 		}
