@@ -13,6 +13,12 @@ public class Sudoku{
 		//Create and diplay the game frame
 		GameFrame.displayFrame();
 		
+		//Start New Game
+		startNewGame();
+	}
+	
+	/*Method to start a new game*/
+	public static void startNewGame(){
 		//Set initial values of board matrix
 		board = SudokuPuzzle.getPuzzle();
 		
@@ -26,9 +32,19 @@ public class Sudoku{
 					//Locking the text field
 					GamePanel.getTextField(j, i).setEnabled(false);
 					
-					//Changing font color of locked cells
+					//Changing Font color for locked cell
 					GamePanel.getTextField(j, i).setDisabledTextColor(Color.BLACK);
 				}
+			}
+		}
+	}
+	
+	public static void clearBoard(){
+		for(int i=0; i<GRID_LENGTH; i++){
+			for(int j=0; j<GRID_LENGTH; j++){
+				board[i][j]=0;
+				GamePanel.getTextField(j, i).setText("");
+				GamePanel.getTextField(j, i).setEnabled(true);
 			}
 		}
 	}
