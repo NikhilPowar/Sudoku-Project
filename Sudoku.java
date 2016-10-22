@@ -22,7 +22,7 @@ public class Sudoku{
 		else
 			board[y][x] = (int)(c-'0');
 		
-		//If a number is entered, check legality of the move.
+		//If any rules are violated, warn player by coloring the fault.
 		checkMove();
 	}
 	
@@ -45,7 +45,7 @@ public class Sudoku{
 		checkGroups();
 	}
 	
-	/*Method to check whether latest entry is a repeat in the column.*/
+	/*Method to check whether there is a repeat in any of the columns.*/
 	/*If yes, then the whole column gets highlighted in red.*/
 	private static void checkColumns(){
 		int i, j;
@@ -63,7 +63,7 @@ public class Sudoku{
 		}
 	}
 	
-	/*Method to check whether latest entry is a repeat in the row.*/
+	/*Method to check whether there is a repeat in any of the rows.*/
 	/*If yes, then the whole row gets highlighted in red.*/
 	private static void checkRows(){
 		int i, j;
@@ -81,7 +81,7 @@ public class Sudoku{
 		}
 	}
 	
-	/*Method to check whether latest entry is a repeat in the 3*3 group.*/
+	/*Method to check whether there is a repeat in any of the 3*3 groups.*/
 	/*If yes, then the whole group gets highlighted in red.*/
 	private static void checkGroups(){
 		int i, j, k, l;
