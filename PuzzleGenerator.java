@@ -1,3 +1,4 @@
+package sudoku;
 import java.util.*;
 import java.lang.*;
 class SudokuPuzzle{
