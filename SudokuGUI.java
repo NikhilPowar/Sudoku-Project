@@ -107,6 +107,15 @@ class OptionsPanel{
 		help.setActionCommand("help");
 		help.addActionListener(new ButtonClickListener());
 		optionsPanel.add(help);
+		
+		//Setting up the "Credits" button
+		JButton credits = new JButton("Credits");
+		credits.setSize(100,50);
+		credits.setVisible(true);
+		credits.setActionCommand("credits");
+		credits.addActionListener(new ButtonClickListener());
+		optionsPanel.add(credits);
+		
 		return optionsPanel;
 	}
 }
@@ -115,6 +124,8 @@ class OptionsPanel{
 class MyJDialog extends JDialog implements ActionListener{
 	public MyJDialog(){
 		super((Frame)null, "Help", true);
+		
+		//Create label
 		JLabel helpbox = new JLabel("<html>Rules:<br>1.Enter numbers from 1 to 9 only.<br>2.Every 3*3 grid must have every digit from 1 to 9<br>"
 					+"3.Every Row and Column must have 1 to 9 digits</html>");
 		helpbox.setFont(new Font("Serif",Font.BOLD,26));
@@ -139,7 +150,30 @@ class MyJDialog extends JDialog implements ActionListener{
 		setVisible(true);
 	}
 	
-	/*Method to dispose of the hep dialog on close*/
+	/*Method to dispose of the help dialog on close*/
+	public void actionPerformed(ActionEvent e){
+		this.dispose();
+	}
+}
+
+class CreditDialog{
+	public CreditDialog(){
+		super((Frame)null, "Credits", true);
+		
+		//Create panel
+		JPanel creditPanel = new JPanel();
+		creditPanel.setLayout(new BoxLayout(creditPanel, BoxLayout.Y_AXIS));
+	 	creditPanel.add(creditbox);
+		
+		//Create and add button
+		JButton close = new JButton("Close");
+		close.setSize(100,50);
+		close.setVisible(true);
+		close.addActionListener(this);
+		creditPanel.add(close);
+	}
+	
+	/*Method to dispose of the credit dialog on close*/
 	public void actionPerformed(ActionEvent e){
 		this.dispose();
 	}
