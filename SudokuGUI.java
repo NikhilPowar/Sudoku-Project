@@ -156,9 +156,13 @@ class MyJDialog extends JDialog implements ActionListener{
 	}
 }
 
-class CreditDialog{
+class CreditDialog extends JDialog implements ActionListener{
 	public CreditDialog(){
 		super((Frame)null, "Credits", true);
+		
+		//Create Label
+		JLabel creditbox = new JLabel("<html>Created by:-<br>Akhil Powar<br>Nikhil Powar<br>Chethan Kille<br>Harsh Kansara</html>");
+		creditbox.setFont(new Font("Serif",Font.BOLD,20));
 		
 		//Create panel
 		JPanel creditPanel = new JPanel();
@@ -171,6 +175,13 @@ class CreditDialog{
 		close.setVisible(true);
 		close.addActionListener(this);
 		creditPanel.add(close);
+		
+		//Set credit panel to visible and add to dialog
+		creditPanel.setVisible(true);
+		add(creditPanel);
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	/*Method to dispose of the credit dialog on close*/
