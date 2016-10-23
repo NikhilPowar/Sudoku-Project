@@ -2,6 +2,7 @@ package sudoku;
 
 import java.util.*;
 import java.awt.event.*;
+import javax.swing.*;
 import java.awt.*;
 
 public class Sudoku{
@@ -10,11 +11,19 @@ public class Sudoku{
 	
 	/*main funciton. Driver for the whole program.*/
 	public static void main(String[] args){
-		//Create and diplay the game frame
-		GameFrame.displayFrame();
+		//Create new runnable object for GUI
+		Runnable r = new Runnable(){
+			public void run(){
+				//Create and diplay the game frame
+				GameFrame.displayFrame();
 		
-		//Start New Game
-		startNewGame();
+				//Start New Game
+				startNewGame();
+			}
+		};
+		
+		//Invoke the GUI thread
+		SwingUtilities.invokeLater(r);
 	}
 	
 	/*Method to start a new game*/
