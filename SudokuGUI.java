@@ -12,7 +12,7 @@ class MyJTextField extends JTextField{
 	private int posX, posY;
 	public MyJTextField(){
 		Font font = this.getFont(); 
-		this.setFont(font.deriveFont(Font.BOLD));
+		this.setFont(font.deriveFont(Font.BOLD, 20));
 		setHorizontalAlignment(JTextField.CENTER);
 	}
 	public void setPos(int x, int y){
@@ -38,7 +38,7 @@ class GameFrame{
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(500,300);
+		mainFrame.setSize(300,300);
 		mainFrame.setLocationRelativeTo(null);
 		
 		//Add panels to mainPanel
@@ -48,6 +48,9 @@ class GameFrame{
 		//Add mainPanel to mainFrame
 		mainFrame.add(mainPanel);
 		mainFrame.setVisible(true);
+		
+		mainFrame.pack();
+		mainFrame.setResizable(false);
 	}
 }
 
@@ -185,6 +188,35 @@ class CreditDialog extends JDialog implements ActionListener{
 	}
 	
 	/*Method to dispose of the credit dialog on close*/
+	public void actionPerformed(ActionEvent e){
+		this.dispose();
+	}
+}
+
+class VictoryDialog extends JDialog{
+	public VictoryDialog(){
+		super((Frame)null, "Victory!", true);
+		setLayout(new FlowLayout());
+		
+		//Create quit button
+		JButton quit = new JButton("Quit");
+		quit.setSize(100, 50);
+		quit.addActionListener(new ButtonClickListener());
+		quit.setActionCommand("quit");
+		quit.setVisible(true);
+		add(quit);
+		
+		//Create new button
+		JButton newGame = new JButton("New Game");
+		newGame.setSize(100, 50);
+		newGame.addActionListener(new ButtonClickListener());
+		newGame.setActionCommand("new");
+		newGame.setVisible(true);
+		add(newGame);
+		
+		pack();
+	}
+	
 	public void actionPerformed(ActionEvent e){
 		this.dispose();
 	}
