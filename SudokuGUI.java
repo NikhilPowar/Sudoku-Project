@@ -127,28 +127,29 @@ class OptionsPanel{
 class MyJDialog extends JDialog implements ActionListener{
 	public MyJDialog(){
 		super((Frame)null, "Help", true);
+		setSize(400,300);
 		
 		//Create label
-		JLabel helpbox = new JLabel("<html>Rules:<br>1.Enter numbers from 1 to 9 only.<br>2.Every 3*3 grid must have every digit from 1 to 9<br>"
+		JLabel helpbox = new JLabel("<html><div style='text-align: center;'>Rules:<br>1.Enter numbers from 1 to 9 only.<br>2.Every 3*3 grid must have every digit from 1 to 9<br>"
 					+"3.Every Row and Column must have 1 to 9 digits</html>");
-		helpbox.setFont(new Font("Serif",Font.BOLD,26));
+		helpbox.setFont(new Font("Serif",Font.BOLD,20));
 		
 		//Create panel
 		JPanel helpPanel = new JPanel();
-		helpPanel.setLayout(new BoxLayout(helpPanel, BoxLayout.Y_AXIS));
-	 	helpPanel.add(helpbox);
+		helpPanel.setLayout(new BorderLayout());
+	 	helpPanel.add(helpbox, BorderLayout.CENTER);
 		
 		//Create and add button
 		JButton close = new JButton("Close");
 		close.setSize(100,50);
+		close.setAlignmentX(CENTER_ALIGNMENT);
 		close.setVisible(true);
 		close.addActionListener(this);
-		helpPanel.add(close);
+		helpPanel.add(close, BorderLayout.PAGE_END);
 		
 		//Set panel to visible and add to dialog
 		helpPanel.setVisible(true);
 		add(helpPanel);
-		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
@@ -162,27 +163,28 @@ class MyJDialog extends JDialog implements ActionListener{
 class CreditDialog extends JDialog implements ActionListener{
 	public CreditDialog(){
 		super((Frame)null, "Credits", true);
+		setSize(200,300);
 		
 		//Create Label
-		JLabel creditbox = new JLabel("<html>Created by:-<br>Akhil Powar<br>Nikhil Powar<br>Chethan Kille<br>Harsh Kansara</html>");
+		JLabel creditbox = new JLabel("<html><div style='text-align: center;'>Created by:-<br>Akhil Powar<br>Nikhil Powar<br>Chethan Kille<br>Harsh Kansara</html>");
 		creditbox.setFont(new Font("Serif",Font.BOLD,20));
 		
 		//Create panel
 		JPanel creditPanel = new JPanel();
-		creditPanel.setLayout(new BoxLayout(creditPanel, BoxLayout.Y_AXIS));
-	 	creditPanel.add(creditbox);
+		creditPanel.setLayout(new BorderLayout());
+	 	creditPanel.add(creditbox, BorderLayout.CENTER);
 		
 		//Create and add button
 		JButton close = new JButton("Close");
 		close.setSize(100,50);
+		close.setAlignmentX(CENTER_ALIGNMENT);
 		close.setVisible(true);
 		close.addActionListener(this);
-		creditPanel.add(close);
+		creditPanel.add(close, BorderLayout.PAGE_END);
 		
 		//Set credit panel to visible and add to dialog
 		creditPanel.setVisible(true);
 		add(creditPanel);
-		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
