@@ -88,6 +88,13 @@ public class Sudoku{
 		
 		//Check and highight groups.
 		checkGroups();
+		
+		//Check if victory conditions are satisfied
+		if(checkVictory()){
+			System.out.println("You have won");
+			(new VictoryDialog()).setVisible(true);
+			
+		}
 	}
 	
 	/*Method to check whether there is a repeat in any of the columns.*/
@@ -146,5 +153,32 @@ public class Sudoku{
 				}
 			}
 		}
+	}
+	
+	/*Function to check if previous move resulted in a victory*/
+	private static boolean checkVictory(){
+		for(int i=0; i<GRID_LENGTH; i++){
+			for(int j=0; j<GRID_LENGTH; j++){
+				if(board[i][j] == 0)
+					return false;
+			}
+		}
+		
+		//Check column and row conditions
+		for(int i=0; i<GRID_LENGTH; i++){
+			if(!SudokuPuzzle.checkColumn(board, i) && !SudokuPuzzle.checkRow(board, i))
+				return false;
+		}
+		
+		//Check group conditions
+		for(int i=0; i<3; i++){
+			for(int j=0; j<3; j++){
+				if(!SudokuPuzzle.checkGroup(board, i, j))
+					return false;
+			}
+		}
+		
+		//Return true if all columns, rows and groups are satisfied
+		return true;
 	}
 }
