@@ -1,4 +1,5 @@
 package sudoku;
+
 import java.util.*;
 import java.lang.*;
 class SudokuPuzzle{
@@ -20,7 +21,7 @@ class SudokuPuzzle{
 		}
 		return puzzle;
 	}
-	private static boolean checkColumn(int[][] puzzle,int x){
+	public static boolean checkColumn(int[][] puzzle,int x){
 		Set<Integer> coveredElements = new HashSet<Integer>();
 		for(int i = 0; i<9; i++){
 			if(puzzle[i][x] != 0){
@@ -30,7 +31,7 @@ class SudokuPuzzle{
 		}
 		return true;
 	}
-	private static boolean checkRow(int[][] puzzle,int y){
+	public static boolean checkRow(int[][] puzzle,int y){
 		Set<Integer> coveredElements = new HashSet<Integer>();
 		for(int i = 0; i < 9; i++){
 			if(puzzle[y][i] != 0){
@@ -40,7 +41,7 @@ class SudokuPuzzle{
 		}
 		return true;
 	}
-	private static boolean checkGroup(int[][] puzzle,int x, int y){
+	public static boolean checkGroup(int[][] puzzle,int x, int y){
 		Set<Integer> coveredElements = new HashSet<Integer>();
 		for(int i = 3*x; i < (3*x+3); i++){
 			for(int j = 3*y; j < (3*y+3); j++){
