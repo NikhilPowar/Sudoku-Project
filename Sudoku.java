@@ -16,9 +16,16 @@ public class Sudoku{
 			public void run(){
 				//Create and diplay the game frame
 				GameFrame.displayFrame();
-		
-				//Start New Game
-				startNewGame();
+				
+				//Initially disable textfields
+				for(int i = 0; i<GRID_LENGTH; i++){
+					for(int j=0; j<GRID_LENGTH; j++){
+						GamePanel.getTextField(i, j).setEnabled(false);
+					}
+				}
+				
+				//Create the welcome dialog
+				new WelcomeDialog();
 			}
 		};
 		
