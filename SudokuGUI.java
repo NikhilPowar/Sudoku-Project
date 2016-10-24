@@ -141,6 +141,43 @@ class OptionsPanel{
 	}
 }
 
+/*Class to create a Welcome dialog with newGame button*/
+class WelcomeDialog extends JDialog implements ActionListener{
+	public WelcomeDialog(){
+		super((Frame)null, "Welcome!", true);
+		setSize(200,100);
+		
+		//Create label
+		JLabel welcome = new JLabel("Welcome to sudoku!!!");
+		welcome.setFont(new Font("Calibri", Font.BOLD, 16));
+		
+		//Create panel
+		JPanel welcomePanel = new JPanel();
+		welcomePanel.setLayout(new BorderLayout());
+	 	welcomePanel.add(welcome, BorderLayout.CENTER);
+		
+		//Create and add button
+		JButton newGame = new JButton("New Game");
+		newGame.setSize(100,50);
+		newGame.addActionListener(new ButtonClickListener());
+		newGame.setActionCommand("new");
+		newGame.setVisible(true);
+		newGame.addActionListener(this);
+		welcomePanel.add(newGame, BorderLayout.PAGE_END);
+		
+		//Set panel to visible and add to dialog
+		welcomePanel.setVisible(true);
+		add(welcomePanel);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+	
+	/*Method to dispose of the help dialog on close*/
+	public void actionPerformed(ActionEvent e){
+		this.dispose();
+	}
+}
+
 /*Class to create a help dialog with close button and rules.*/
 class MyJDialog extends JDialog implements ActionListener{
 	public MyJDialog(){
