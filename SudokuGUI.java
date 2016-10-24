@@ -142,12 +142,12 @@ class OptionsPanel{
 class MyJDialog extends JDialog implements ActionListener{
 	public MyJDialog(){
 		super((Frame)null, "Help", true);
-		setSize(400,300);
+		setSize(300,200);
 		
 		//Create label
 		JLabel helpbox = new JLabel("<html><div style='text-align: center;'>Rules:<br>1.Enter numbers from 1 to 9 only.<br>2.Every 3*3 grid must have every digit from 1 to 9<br>"
 					+"3.Every Row and Column must have 1 to 9 digits</html>");
-		helpbox.setFont(new Font("Serif",Font.BOLD,20));
+		helpbox.setFont(new Font("Calibri", Font.BOLD,16));
 		
 		//Create panel
 		JPanel helpPanel = new JPanel();
@@ -178,11 +178,11 @@ class MyJDialog extends JDialog implements ActionListener{
 class CreditDialog extends JDialog implements ActionListener{
 	public CreditDialog(){
 		super((Frame)null, "Credits", true);
-		setSize(200,300);
+		setSize(150,200);
 		
 		//Create Label
 		JLabel creditbox = new JLabel("<html><div style='text-align: center;'>Created by:-<br>Akhil Powar<br>Nikhil Powar<br>Chethan Kille<br>Harsh Kansara</html>");
-		creditbox.setFont(new Font("Serif",Font.BOLD,20));
+		creditbox.setFont(new Font("Calibri",Font.BOLD,20));
 		
 		//Create panel
 		JPanel creditPanel = new JPanel();
