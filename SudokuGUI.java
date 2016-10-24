@@ -59,16 +59,31 @@ class GamePanel{
 	public final static List<MyJTextField> tfList = new ArrayList<MyJTextField>();
 	static JPanel createGamePanel(){
 		//Setting up game panel
-		//The 9x9 grid is contained here
+		//The 9 3x3 grids are contained here
 		MyJTextField temp;
-		JPanel gamePanel = new JPanel(new GridLayout(9,9));
+		JPanel gamePanel = new JPanel(new GridLayout(3, 3, 10, 10));
+		//Create 9 3x3 grids for groups
+		//Creating grids
+		JPanel[][] grids = new JPanel[3][3];
+		for(int i=0; i<3; i++){
+			for(int j=0; j<3; j++){
+				grids[i][j] = new JPanel(new GridLayout(3, 3));
+			}
+		}
+		//Assigning textboxes to respective grids
 		for(int i=0; i<9; i++){
 			for(int j=0; j<9; j++){
 				temp = new MyJTextField();
 				temp.setPos(j, i);
 				tfList.add(temp);
 				temp.addKeyListener(new TextEntryListener());
-				gamePanel.add(temp);
+				grids[i/3][j/3].add(temp);
+			}
+		}
+		//Assigning grids to main gamePanel
+		for(int i=0; i<3; i++){
+			for(int j=0; j<3; j++){
+				gamePanel.add(grids[i][j]);
 			}
 		}
 		return gamePanel;
