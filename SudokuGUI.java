@@ -61,7 +61,7 @@ class GamePanel{
 		//Setting up game panel
 		//The 9 3x3 grids are contained here
 		MyJTextField temp;
-		JPanel gamePanel = new JPanel(new GridLayout(3, 3, 10, 10));
+		JPanel gamePanel = new JPanel(new GridLayout(3, 3, 5, 5));
 		//Create 9 3x3 grids for groups
 		//Creating grids
 		JPanel[][] grids = new JPanel[3][3];
@@ -86,6 +86,9 @@ class GamePanel{
 				gamePanel.add(grids[i][j]);
 			}
 		}
+		
+		//Set background color to black
+		gamePanel.setBackground(Color.BLACK);
 		return gamePanel;
 	}
 	
@@ -147,7 +150,7 @@ class MyJDialog extends JDialog implements ActionListener{
 		//Create label
 		JLabel helpbox = new JLabel("<html><div style='text-align: center;'>Rules:<br>1.Enter numbers from 1 to 9 only.<br>2.Every 3*3 grid must have every digit from 1 to 9<br>"
 					+"3.Every Row and Column must have 1 to 9 digits</html>");
-		helpbox.setFont(new Font("Calibri", Font.BOLD,16));
+		helpbox.setFont(new Font("Calibri",Font.BOLD,16));
 		
 		//Create panel
 		JPanel helpPanel = new JPanel();
@@ -210,10 +213,10 @@ class CreditDialog extends JDialog implements ActionListener{
 	}
 }
 
-class VictoryDialog extends JDialog{
+class VictoryDialog extends JDialog implements ActionListener{
 	public VictoryDialog(){
 		super((Frame)null, "Victory!", true);
-		setLayout(new FlowLayout());
+		setLayout(new BorderLayout());
 		
 		//Create quit button
 		JButton quit = new JButton("Quit");
@@ -221,17 +224,31 @@ class VictoryDialog extends JDialog{
 		quit.addActionListener(new ButtonClickListener());
 		quit.setActionCommand("quit");
 		quit.setVisible(true);
-		add(quit);
 		
 		//Create new button
 		JButton newGame = new JButton("New Game");
 		newGame.setSize(100, 50);
 		newGame.addActionListener(new ButtonClickListener());
 		newGame.setActionCommand("new");
+		newGame.addActionListener(this);
 		newGame.setVisible(true);
-		add(newGame);
+		
+		//Create and add new jlabel with victory message
+		JLabel victoryLabel = new JLabel("Congratulations! You win!");
+		victoryLabel.setFont(new Font("Calibri", Font.BOLD, 16));
+		victoryLabel.setVisible(true);
+		add(victoryLabel, BorderLayout.CENTER);
+		
+		//Create and add new options panel
+		JPanel victoryOptionsPanel = new JPanel();
+		victoryOptionsPanel.setLayout(new FlowLayout());
+		victoryOptionsPanel.setVisible(true);
+		victoryOptionsPanel.add(quit);
+		victoryOptionsPanel.add(newGame);
+		add(victoryOptionsPanel, BorderLayout.PAGE_END);
 		
 		pack();
+		setLocationRelativeTo(null);
 	}
 	
 	public void actionPerformed(ActionEvent e){
