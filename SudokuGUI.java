@@ -38,8 +38,7 @@ class GameFrame{
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(300,300);
-		mainFrame.setLocationRelativeTo(null);
+		mainFrame.setSize(new Dimension(410,450));
 		
 		//Add panels to mainPanel
 		mainPanel.add(GamePanel.createGamePanel());
@@ -47,10 +46,12 @@ class GameFrame{
 		
 		//Add mainPanel to mainFrame
 		mainFrame.add(mainPanel);
+		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setVisible(true);
-		
-		mainFrame.pack();
 		mainFrame.setResizable(false);
+		
+		//Add a window action listener
+		mainFrame.addWindowFocusListener(new GameFocusListener());
 	}
 }
 
@@ -62,12 +63,17 @@ class GamePanel{
 		//The 9 3x3 grids are contained here
 		MyJTextField temp;
 		JPanel gamePanel = new JPanel(new GridLayout(3, 3, 5, 5));
+		gamePanel.setPreferredSize(new Dimension(400,400));
 		//Create 9 3x3 grids for groups
 		//Creating grids
 		JPanel[][] grids = new JPanel[3][3];
 		for(int i=0; i<3; i++){
 			for(int j=0; j<3; j++){
 				grids[i][j] = new JPanel(new GridLayout(3, 3));
+				grids[i][j].setPreferredSize(new Dimension(130,130));
+				
+				//Set background color to black
+				grids[i][j].setBackground(Color.BLACK);
 			}
 		}
 		//Assigning textboxes to respective grids
@@ -75,6 +81,7 @@ class GamePanel{
 			for(int j=0; j<9; j++){
 				temp = new MyJTextField();
 				temp.setPos(j, i);
+				temp.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 				tfList.add(temp);
 				temp.addKeyListener(new TextEntryListener());
 				grids[i/3][j/3].add(temp);
@@ -89,6 +96,11 @@ class GamePanel{
 		
 		//Set background color to black
 		gamePanel.setBackground(Color.BLACK);
+		
+		//Set Border to black
+		gamePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		
+		//return Game Panel
 		return gamePanel;
 	}
 	
@@ -107,7 +119,6 @@ class OptionsPanel{
 		
 		//Setting up the "New Game" button
 		JButton newGame = new JButton("New Game");
-		newGame.setSize(100,50);
 		newGame.setVisible(true);
 		newGame.setActionCommand("new");
 		newGame.addActionListener(new ButtonClickListener());
@@ -115,7 +126,6 @@ class OptionsPanel{
 		
 		//Setting up the "Quit Game" button
 		JButton quit = new JButton("Quit Game");
-		quit.setSize(100,50);
 		quit.setVisible(true);
 		quit.setActionCommand("quit");
 		quit.addActionListener(new ButtonClickListener());
@@ -123,7 +133,6 @@ class OptionsPanel{
 		
 		//Setting up the "Help" button
 		JButton help = new JButton("Help");
-		help.setSize(100,50);
 		help.setVisible(true);
 		help.setActionCommand("help");
 		help.addActionListener(new ButtonClickListener());
@@ -131,7 +140,6 @@ class OptionsPanel{
 		
 		//Setting up the "Credits" button
 		JButton credits = new JButton("Credits");
-		credits.setSize(100,50);
 		credits.setVisible(true);
 		credits.setActionCommand("credits");
 		credits.addActionListener(new ButtonClickListener());
@@ -158,7 +166,6 @@ class WelcomeDialog extends JDialog implements ActionListener{
 		
 		//Create and add button
 		JButton newGame = new JButton("New Game");
-		newGame.setSize(100,50);
 		newGame.addActionListener(new ButtonClickListener());
 		newGame.setActionCommand("new");
 		newGame.setVisible(true);
@@ -182,7 +189,7 @@ class WelcomeDialog extends JDialog implements ActionListener{
 class MyJDialog extends JDialog implements ActionListener{
 	public MyJDialog(){
 		super((Frame)null, "Help", true);
-		setSize(300,200);
+		setSize(250,200);
 		
 		//Create label
 		JLabel helpbox = new JLabel("<html><div style='text-align: center;'>Rules:<br>1.Enter numbers from 1 to 9 only.<br>2.Every 3*3 grid must have every digit from 1 to 9<br>"
@@ -196,7 +203,6 @@ class MyJDialog extends JDialog implements ActionListener{
 		
 		//Create and add button
 		JButton close = new JButton("Close");
-		close.setSize(100,50);
 		close.setAlignmentX(CENTER_ALIGNMENT);
 		close.setVisible(true);
 		close.addActionListener(this);
@@ -231,7 +237,6 @@ class CreditDialog extends JDialog implements ActionListener{
 		
 		//Create and add button
 		JButton close = new JButton("Close");
-		close.setSize(100,50);
 		close.setAlignmentX(CENTER_ALIGNMENT);
 		close.setVisible(true);
 		close.addActionListener(this);
