@@ -49,7 +49,7 @@ public class Sudoku{
 					GamePanel.getTextField(j, i).setEnabled(false);
 					
 					//Changing Font color for locked cell
-					GamePanel.getTextField(j, i).setDisabledTextColor(Color.BLACK);
+					GamePanel.getTextField(j, i).setDisabledTextColor(Color.GRAY);
 				}
 			}
 		}
