@@ -41,3 +41,20 @@ class TextEntryListener implements KeyListener{
 		Sudoku.updateBoard(((MyJTextField)e.getSource()).getX(), ((MyJTextField)e.getSource()).getY(), c);
 	}
 }
+
+class GameFocusListener implements WindowFocusListener{
+	public void windowLostFocus(WindowEvent e){};
+	public void windowGainedFocus(WindowEvent e){
+		for(int i=0; i<9; i++){
+			for(int j=0; j<9; j++){
+				if(Sudoku.board[j][i] == 0){
+					GamePanel.getTextField(i, j).setText(" ");
+					GamePanel.getTextField(i, j).setText("");
+				}
+				else{
+					GamePanel.getTextField(i, j).setText(""+Sudoku.board[j][i]);
+				}
+			}
+		}
+	}
+}
